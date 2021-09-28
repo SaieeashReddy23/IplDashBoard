@@ -2,10 +2,8 @@ package com.sai.IplDashBoard.model;
 
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Team {
@@ -16,6 +14,21 @@ public class Team {
     private String teamName;
     private long totalMatches;
     private long totalWins;
+
+    @Transient
+    private List<Match> latestMatches;
+
+    public List<Match> getLatestMatches() {
+        return latestMatches;
+    }
+
+    public void setLatestMatches(List<Match> latestMatches) {
+        this.latestMatches = latestMatches;
+    }
+
+    public Team(){
+
+    }
 
     public Team(String teamName, long totalMatches) {
         this.teamName = teamName;
